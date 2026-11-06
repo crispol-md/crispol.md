@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 48" fill="none">
+  <!-- Abstract C mark -->
+  <path d="M24 4C12.954 4 4 12.954 4 24s8.954 20 20 20c7.18 0 13.487-3.78 17.02-9.46" stroke="#3B2F2F" stroke-width="3.5" stroke-linecap="round"/>
+  <circle cx="38" cy="12" r="2.5" fill="#3B2F2F"/>
+  <!-- Wordmark -->
+  <text x="56" y="33" font-family="'Onest', system-ui, sans-serif" font-size="26" font-weight="600" fill="#3B2F2F" letter-spacing="3">CRISPOL</text>
+</svg>

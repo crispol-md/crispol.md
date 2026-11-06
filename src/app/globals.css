@@ -2,30 +2,47 @@
 
 @theme {
   --font-sans: var(--font-onest), system-ui, -apple-system, sans-serif;
-  --font-display: var(--font-display), 'Cormorant Garamond', 'Georgia', serif;
+  --font-mono: var(--font-mono), 'JetBrains Mono', 'Fira Code', monospace;
 }
 
-/* Smooth scrolling */
 html {
   scroll-behavior: smooth;
 }
 
-/* Font display class utility */
-.font-display {
-  font-family: var(--font-display), 'Cormorant Garamond', 'Georgia', serif;
+.font-mono {
+  font-family: var(--font-mono), 'JetBrains Mono', 'Fira Code', monospace;
 }
 
-/* Custom scrollbar */
+/* Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #FAF5E9;
+  background: #F4EFE6;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(59, 47, 47, 0.15);
+  background: rgba(22, 19, 17, 0.15);
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(59, 47, 47, 0.25);
+  background: rgba(22, 19, 17, 0.3);
+}
+
+/* Hero cinematic scale */
+@keyframes hero-scale {
+  from { transform: scale(1.08); }
+  to { transform: scale(1); }
+}
+.animate-hero-scale {
+  animation: hero-scale 8s ease-out forwards;
+}
+
+/* Progress shimmer */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.animate-shimmer {
+  background-size: 200% 100%;
+  animation: shimmer 3s linear infinite;
 }

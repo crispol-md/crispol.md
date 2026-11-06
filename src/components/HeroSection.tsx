@@ -1,8 +1,10 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { useI18n } from '@/lib/I18nProvider';
+import Header from './Header';
 
 const TARGET_DATE = new Date('2026-12-06T00:00:00+02:00').getTime();
 
@@ -23,21 +25,6 @@ function getTimeLeft(): TimeLeft {
   };
 }
 
-function CountdownCard({ value, label }: { value: number; label: string }) {
-  return (
-    <div className="flex flex-col items-center gap-1.5">
-      <div className="w-[72px] sm:w-[88px] h-[72px] sm:h-[88px] rounded-2xl bg-[#F5F5DC] border border-[rgba(59,47,47,0.12)] flex items-center justify-center shadow-sm">
-        <span className="text-3xl sm:text-4xl font-semibold text-[#3B2F2F] tabular-nums font-display">
-          {String(value).padStart(2, '0')}
-        </span>
-      </div>
-      <span className="text-[11px] sm:text-xs text-[#8C7A6B] uppercase tracking-widest">
-        {label}
-      </span>
-    </div>
-  );
-}
-
 export default function HeroSection() {
   const { t } = useI18n();
   const [timeLeft, setTimeLeft] = useState<TimeLeft>(getTimeLeft);
@@ -48,53 +35,182 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-5 pt-24 pb-16 sm:pt-28 sm:pb-20">
-      {/* Subtle radial gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#FAF5E9] via-[#FAF5E9] to-[#F5F5DC]/40 pointer-events-none" />
+    <section className="relative p-3 md:p-5">
+      <div className="relative w-full min-h-[92vh] rounded-3xl overflow-hidden">
+        {/* Background foto.jpg */}
+        <Image
+          src="/foto.jpg"
+          alt="CRISPOL Premium Furniture"
+          fill
+          priority
+          className="object-cover animate-hero-scale"
+          sizes="100vw"
+        />
 
-      <div className="relative z-10 max-w-3xl mx-auto text-center">
-        {/* Super title */}
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-[11px] sm:text-xs tracking-[0.3em] text-[#8C7A6B] mb-5 sm:mb-6 font-medium"
-        >
-          {t.superTitle}
-        </motion.p>
+        {/* Multi-layer gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#120F0D]/95 via-[#120F0D]/55 to-[#120F0D]/35" />
 
-        {/* Main heading */}
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.2 }}
-          className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] font-semibold text-[#3B2F2F] leading-[1.15] tracking-tight mb-6 sm:mb-8 whitespace-pre-line"
-        >
-          {t.heroTitle}
-        </motion.h1>
+        {/* Floating glass header */}
+        <Header />
 
-        {/* Subtitle */}
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.35 }}
-          className="text-base sm:text-lg text-[#8C7A6B] max-w-2xl mx-auto mb-10 sm:mb-14 leading-relaxed"
-        >
-          {t.heroSubtitle}
-        </motion.p>
+        {/* Bottom content grid */}
+        <div className="absolute bottom-0 left-0 right-0 p-5 md:p-10 lg:p-14">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-6 items-end">
+            {/* LEFT — Main content (7 cols) */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+              className="lg:col-span-7 space-y-5"
+            >
+              {/* Technical badge */}
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 border border-white/20 rounded-lg">
+                <span
+                  className="text-[10px] md:text-[11px] tracking-[0.2em] text-[#FAF6F0]/70 uppercase"
+                  style={{ fontFamily: 'var(--font-mono), monospace' }}
+                >
+                  {t.heroBadge}
+                </span>
+              </div>
 
-        {/* Countdown */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-          className="flex justify-center gap-3 sm:gap-5"
-        >
-          <CountdownCard value={timeLeft.days} label={t.days} />
-          <CountdownCard value={timeLeft.hours} label={t.hours} />
-          <CountdownCard value={timeLeft.minutes} label={t.minutes} />
-          <CountdownCard value={timeLeft.seconds} label={t.seconds} />
-        </motion.div>
+              {/* Big heading */}
+              <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-[#FAF6F0] leading-[1.05] tracking-tight whitespace-pre-line">
+                {t.heroTitle}
+              </h1>
+
+              {/* Subtitle */}
+              <p className="text-base md:text-lg text-white/70 max-w-2xl leading-relaxed">
+                {t.heroSubtitle}
+              </p>
+
+              {/* 3 Glass micro-badges */}
+              <div className="flex flex-wrap gap-2">
+                {[t.heroBadge1, t.heroBadge2, t.heroBadge3].map((badge, i) => (
+                  <span
+                    key={i}
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 backdrop-blur-sm bg-white/10 border border-white/15 rounded-lg text-xs text-[#FAF6F0]/90 font-medium"
+                  >
+                    <span className="w-1 h-1 rounded-full bg-[#C59B6D]" />
+                    {badge}
+                  </span>
+                ))}
+              </div>
+
+              {/* 2 CTA Buttons */}
+              <div className="flex flex-wrap gap-3 pt-2">
+                <a
+                  href="https://999.md/ru/profile/crispol-md"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <motion.span
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="inline-flex items-center gap-2 bg-[#FAF6F0] text-[#161311] hover:bg-white font-semibold px-6 md:px-7 py-3.5 md:py-4 rounded-xl text-sm md:text-base transition-colors cursor-pointer"
+                  >
+                    {t.heroBtnPrimary}
+                    <svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M7 17L17 7" />
+                      <path d="M7 7h10v10" />
+                    </svg>
+                  </motion.span>
+                </a>
+                <a
+                  href="https://t.me/cernavation"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <motion.span
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="inline-flex items-center gap-2 backdrop-blur-md bg-white/10 border border-white/20 text-white px-6 md:px-7 py-3.5 md:py-4 rounded-xl text-sm md:text-base font-medium hover:bg-white/15 transition-colors cursor-pointer"
+                  >
+                    {t.heroBtnSecondary}
+                  </motion.span>
+                </a>
+              </div>
+            </motion.div>
+
+            {/* RIGHT — Glassmorphism Countdown Dock (5 cols) */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.7 }}
+              className="lg:col-span-5"
+            >
+              <div className="backdrop-blur-xl bg-[#161311]/70 border border-white/15 rounded-2xl p-5 md:p-6 text-[#FAF6F0]">
+                {/* Title + date badge */}
+                <div className="flex items-start justify-between gap-3 mb-5">
+                  <h3 className="text-[11px] md:text-xs font-semibold tracking-wide uppercase text-white/70 leading-tight max-w-[200px]">
+                    {t.countdownTitle}
+                  </h3>
+                  <span
+                    className="flex-shrink-0 px-2.5 py-1 bg-[#C59B6D]/20 border border-[#C59B6D]/30 rounded-lg text-[#C59B6D] text-xs font-semibold"
+                    style={{ fontFamily: 'var(--font-mono), monospace' }}
+                  >
+                    {t.countdownDate}
+                  </span>
+                </div>
+
+                {/* 4 Timer cells */}
+                <div className="grid grid-cols-4 gap-2 mb-5">
+                  {([
+                    { value: timeLeft.days, label: t.days },
+                    { value: timeLeft.hours, label: t.hours },
+                    { value: timeLeft.minutes, label: t.minutes },
+                    { value: timeLeft.seconds, label: t.seconds },
+                  ] as const).map((cell, i) => (
+                    <div
+                      key={i}
+                      className="flex flex-col items-center gap-1 bg-white/5 border border-white/10 rounded-xl py-3"
+                    >
+                      <span
+                        className="text-2xl md:text-3xl font-semibold tabular-nums text-[#FAF6F0]"
+                        style={{ fontFamily: 'var(--font-mono), monospace' }}
+                      >
+                        {String(cell.value).padStart(2, '0')}
+                      </span>
+                      <span className="text-[9px] md:text-[10px] uppercase tracking-widest text-white/50">
+                        {cell.label}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Progress bar */}
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between text-[11px] text-white/60">
+                    <span>{t.countdownProgress}</span>
+                    <span
+                      className="font-semibold text-[#C59B6D]"
+                      style={{ fontFamily: 'var(--font-mono), monospace' }}
+                    >
+                      78%
+                    </span>
+                  </div>
+                  <div className="h-1.5 bg-white/10 rounded-full overflow-hidden">
+                    <div
+                      className="h-full bg-gradient-to-r from-[#C59B6D] to-[#D4A96A] rounded-full animate-shimmer"
+                      style={{ width: '78%' }}
+                    />
+                  </div>
+                  <p className="text-[10px] md:text-[11px] text-white/45 leading-relaxed mt-2">
+                    {t.countdownUpcoming}
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
       </div>
     </section>
   );

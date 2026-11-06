@@ -1,18 +1,19 @@
 import type { Metadata } from 'next';
-import { Onest, Cormorant_Garamond } from 'next/font/google';
+import { Onest, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 import { I18nProvider } from '@/lib/I18nProvider';
 
 const onest = Onest({
   subsets: ['latin', 'cyrillic'],
   variable: '--font-onest',
+  weight: ['400', '500', '600', '700'],
   display: 'swap',
 });
 
-const cormorant = Cormorant_Garamond({
+const jetbrainsMono = JetBrains_Mono({
   subsets: ['latin', 'cyrillic'],
-  variable: '--font-display',
-  weight: ['400', '500', '600', '700'],
+  variable: '--font-mono',
+  weight: ['400', '500', '600'],
   display: 'swap',
 });
 
@@ -36,23 +37,16 @@ export const metadata: Metadata = {
     description:
       'Итальянская эстетика. Индивидуальное исполнение. Прямые цены от производителя.',
   },
-  robots: {
-    index: true,
-    follow: true,
-  },
-  icons: {
-    icon: '/favicon.ico',
-  },
+  robots: { index: true, follow: true },
+  icons: { icon: '/favicon.ico' },
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="ru" className={`${onest.variable} ${cormorant.variable}`}>
-      <body className="font-sans antialiased bg-[#FAF5E9] text-[#3B2F2F] selection:bg-[#3B2F2F]/10">
+    <html lang="ru" className={`${onest.variable} ${jetbrainsMono.variable}`}>
+      <body className="font-sans antialiased bg-[#F4EFE6] text-[#161311] selection:bg-[#C59B6D]/20">
         <I18nProvider>{children}</I18nProvider>
       </body>
     </html>

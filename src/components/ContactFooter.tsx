@@ -38,10 +38,23 @@ function IconX() {
 }
 function IconNineMd() {
   return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="12" cy="9" r="5" />
-      <path d="M17 9v4a5 5 0 01-10 0" />
-    </svg>
+    <span
+      style={{
+        display: 'inline-flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: 16,
+        height: 16,
+        fontWeight: 800,
+        fontSize: '10px',
+        letterSpacing: '-0.5px',
+        lineHeight: 1,
+        borderRadius: 3,
+        border: '1.5px solid currentColor',
+      }}
+    >
+      999
+    </span>
   );
 }
 

@@ -18,8 +18,10 @@ export default function VideoShowcase() {
   const { t } = useI18n();
   const [activeIndex, setActiveIndex] = useState(0);
   const [isLoaded, setIsLoaded] = useState(true);
+  const [isVisible, setIsVisible] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
 
   const goTo = useCallback(
     (index: number) => {
@@ -38,7 +40,35 @@ export default function VideoShowcase() {
     goTo((activeIndex - 1 + VIDEO_SOURCES.length) % VIDEO_SOURCES.length);
   }, [activeIndex, goTo]);
 
-  // Play video when index changes
+  // IntersectionObserver — play/pause based on visibility
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold: 0.35 }
+    );
+
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
+
+  // Pause/play when visibility changes
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    if (isVisible) {
+      video.play().catch(() => {});
+    } else {
+      video.pause();
+    }
+  }, [isVisible]);
+
+  // Load video when index changes (only play if visible)
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
@@ -48,19 +78,21 @@ export default function VideoShowcase() {
     
     const handleCanPlay = () => {
       setIsLoaded(true);
-      video.play().catch(() => {});
+      if (isVisible) {
+        video.play().catch(() => {});
+      }
     };
     
     video.addEventListener('canplay', handleCanPlay);
     return () => video.removeEventListener('canplay', handleCanPlay);
-  }, [activeIndex]);
+  }, [activeIndex, isVisible]);
 
   const handleEnded = useCallback(() => {
     goNext();
   }, [goNext]);
 
   return (
-    <section id="showroom" className="bg-[#F4EFE6] px-3 md:px-5 py-16 md:py-24">
+    <section ref={sectionRef} id="showroom" className="bg-[#F4EFE6] px-3 md:px-5 py-16 md:py-24">
       <div className="max-w-7xl mx-auto">
         {/* Section header */}
         <motion.div
@@ -98,7 +130,7 @@ export default function VideoShowcase() {
                 ref={videoRef}
                 muted
                 playsInline
-                autoPlay
+  
                 onEnded={handleEnded}
                 className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ease-in-out ${
                   isLoaded ? 'opacity-100' : 'opacity-0'

@@ -47,14 +47,14 @@ export default function HeroSection() {
           sizes="100vw"
         />
 
-        {/* Multi-layer gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#120F0D]/95 via-[#120F0D]/55 to-[#120F0D]/35" />
+        {/* Multi-layer gradient overlay — lighter in center to let the photo breathe */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#120F0D]/95 via-[#120F0D]/40 to-[#120F0D]/35" />
 
         {/* Floating glass header */}
         <Header />
 
-        {/* Bottom content grid */}
-        <div className="absolute bottom-0 left-0 right-0 p-5 md:p-10 lg:p-14">
+        {/* Content grid — with safe top padding to clear the header */}
+        <div className="absolute inset-0 flex flex-col justify-end p-5 md:p-10 lg:p-14 pt-28 md:pt-36">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-6 items-end">
             {/* LEFT — Main content (7 cols) */}
             <motion.div
@@ -73,8 +73,8 @@ export default function HeroSection() {
                 </span>
               </div>
 
-              {/* Big heading */}
-              <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-[#FAF6F0] leading-[1.05] tracking-tight whitespace-pre-line">
+              {/* Big heading — compact 2-3 lines */}
+              <h1 className="text-3xl sm:text-4xl lg:text-[44px] font-bold text-[#FAF6F0] leading-[1.12] tracking-tight max-w-2xl whitespace-pre-line">
                 {t.heroTitle}
               </h1>
 

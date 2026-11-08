@@ -12,19 +12,19 @@ export default function Header() {
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.7, delay: 0.3, ease: 'easeOut' }}
-      className="absolute top-4 left-4 right-4 md:top-6 md:left-6 md:right-6 z-20"
+      className="absolute top-3 left-3 right-3 sm:top-4 sm:left-4 sm:right-4 md:top-6 md:left-6 md:right-6 z-20"
     >
-      <div className="backdrop-blur-md bg-[#FAF6F0]/90 border border-black/10 rounded-2xl px-4 md:px-5 py-3 flex items-center justify-between">
+      <div className="backdrop-blur-md bg-[#FAF6F0]/90 border border-black/10 rounded-2xl px-3.5 py-2.5 sm:px-4 sm:py-3 md:px-5 flex items-center justify-between shadow-sm">
         {/* Logo */}
-        <a href="/" className="flex-shrink-0">
+        <a href="/" className="flex-shrink-0 flex items-center">
           <Image
             src="/logo.svg"
             alt="CRISPOL"
             width={160}
-            height={32}
+            height={20}
             priority
             unoptimized
-            className="h-7 md:h-8 w-auto"
+            className="h-5 sm:h-6 md:h-7 w-auto"
           />
         </a>
 
@@ -63,8 +63,29 @@ export default function Header() {
           </nav>
         </div>
 
-        {/* Right: Phone + Language */}
-        <div className="flex items-center gap-3">
+        {/* Right: Phone (mobile icon / desktop text) + Language capsule */}
+        <div className="flex items-center gap-2 sm:gap-3">
+          {/* Quick Call Icon (Mobile only) */}
+          <a
+            href="tel:+37378128316"
+            aria-label="Позвонить в CRISPOL"
+            className="flex md:hidden items-center justify-center w-8 h-8 rounded-full bg-[#161311]/5 hover:bg-[#161311]/10 border border-[#161311]/10 text-[#161311] transition-colors flex-shrink-0 active:scale-95"
+          >
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" />
+            </svg>
+          </a>
+
+          {/* Phone with number (Desktop / tablet only) */}
           <a
             href="tel:+37378128316"
             className="hidden md:flex items-center gap-1.5 text-sm font-medium text-[#161311] hover:text-[#C59B6D] transition-colors"
@@ -86,7 +107,7 @@ export default function Header() {
           </a>
 
           {/* Language capsule */}
-          <div className="relative flex items-center bg-[#161311]/5 rounded-full border border-[#161311]/10 p-0.5">
+          <div className="relative flex items-center bg-[#161311]/5 rounded-full border border-[#161311]/10 p-0.5 flex-shrink-0">
             <motion.div
               layout
               className="absolute top-0.5 bottom-0.5 w-[calc(50%-2px)] rounded-full bg-[#161311]"
@@ -95,7 +116,7 @@ export default function Header() {
             />
             <button
               onClick={() => locale !== 'ru' && toggleLocale()}
-              className={`relative z-10 px-3 py-1 text-xs font-semibold rounded-full transition-colors cursor-pointer ${
+              className={`relative z-10 px-2.5 sm:px-3 py-1 text-xs font-semibold rounded-full transition-colors cursor-pointer ${
                 locale === 'ru'
                   ? 'text-white'
                   : 'text-[#161311]/50 hover:text-[#161311]'
@@ -105,7 +126,7 @@ export default function Header() {
             </button>
             <button
               onClick={() => locale !== 'ro' && toggleLocale()}
-              className={`relative z-10 px-3 py-1 text-xs font-semibold rounded-full transition-colors cursor-pointer ${
+              className={`relative z-10 px-2.5 sm:px-3 py-1 text-xs font-semibold rounded-full transition-colors cursor-pointer ${
                 locale === 'ro'
                   ? 'text-white'
                   : 'text-[#161311]/50 hover:text-[#161311]'

@@ -84,7 +84,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="ru" className={`${onest.variable} ${jetbrainsMono.variable}`}>
-      <body className="font-sans antialiased bg-[#F4EFE6] text-[#161311] selection:bg-[#C59B6D]/20">
+      <body className="font-sans antialiased bg-[#F4EFE6] text-[#161311] selection:bg-[#C59B6D]/20 overflow-x-hidden min-h-screen">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

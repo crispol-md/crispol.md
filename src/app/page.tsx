@@ -8,7 +8,7 @@ import ContactFooter from '@/components/ContactFooter';
 export default function Home() {
   return (
     <>
-      <main>
+      <main className="overflow-x-hidden">
         <HeroSection />
         <VideoShowcase />
         <BentoFeatures />

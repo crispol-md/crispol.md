@@ -145,10 +145,10 @@ export default function ContactFooter() {
   ];
 
   return (
-    <footer className="px-3 md:px-5 pb-5">
+    <footer className="px-2.5 sm:px-4 md:px-5 pb-4 sm:pb-5">
       <div
         id="contact"
-        className="bg-[#161311] text-[#FAF6F0] rounded-3xl p-6 md:p-10 lg:p-12"
+        className="bg-[#161311] text-[#FAF6F0] rounded-3xl p-5 sm:p-8 md:p-10 lg:p-12"
       >
         {/* CTA Heading */}
         <motion.div
@@ -156,12 +156,12 @@ export default function ContactFooter() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-60px' }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-8 md:mb-10"
+          className="text-center mb-6 sm:mb-8 md:mb-10"
         >
-          <h2 className="text-2xl md:text-4xl font-bold tracking-tight mb-3">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight mb-2 sm:mb-3">
             {t.contactTitle}
           </h2>
-          <p className="text-sm md:text-base text-white/50 max-w-xl mx-auto">
+          <p className="text-xs sm:text-sm md:text-base text-white/50 max-w-xl mx-auto leading-relaxed">
             {t.contactSubtitle}
           </p>
         </motion.div>
@@ -172,7 +172,7 @@ export default function ContactFooter() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-40px' }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-2.5 sm:gap-3"
         >
           {contacts.map((c, i) => (
             <a
@@ -181,16 +181,16 @@ export default function ContactFooter() {
               {...(c.external
                 ? { target: '_blank', rel: 'noopener noreferrer' }
                 : {})}
-              className="bg-white/5 border border-white/10 rounded-xl p-4 hover:bg-white/10 hover:border-white/20 transition-all group block"
+              className="bg-white/5 border border-white/10 rounded-xl p-3.5 sm:p-4 hover:bg-white/10 hover:border-white/20 transition-all group block active:scale-[0.98]"
             >
-              <div className="text-white/40 group-hover:text-[#C59B6D] transition-colors mb-3">
+              <div className="text-white/40 group-hover:text-[#C59B6D] transition-colors mb-2.5 sm:mb-3">
                 {c.icon}
               </div>
-              <p className="text-sm font-semibold text-[#FAF6F0] mb-0.5">
+              <p className="text-xs sm:text-sm font-semibold text-[#FAF6F0] mb-0.5">
                 {c.label}
               </p>
               <p
-                className="text-xs text-white/40"
+                className="text-[11px] sm:text-xs text-white/40 truncate"
                 style={{ fontFamily: 'var(--font-mono), monospace' }}
               >
                 {c.value}
@@ -200,27 +200,27 @@ export default function ContactFooter() {
         </motion.div>
 
         {/* Footer bottom */}
-        <div className="border-t border-white/10 mt-10 pt-8">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="border-t border-white/10 mt-8 sm:mt-10 pt-6 sm:pt-8">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-5 sm:gap-6">
             {/* Logo (inverted to white) */}
             <Image
               src="/logo.svg"
               alt="CRISPOL"
               width={120}
-              height={24}
+              height={15}
               unoptimized
-              className="h-6 w-auto brightness-0 invert opacity-50"
+              className="h-5 sm:h-6 w-auto brightness-0 invert opacity-50"
             />
 
             {/* Social links */}
-            <div className="flex flex-wrap justify-center gap-2">
+            <div className="flex flex-wrap justify-center gap-1.5 sm:gap-2">
               {socialLinks.map((link) => (
                 <a
                   key={link.label}
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-white/10 text-white/50 text-xs hover:text-white/80 hover:border-white/20 hover:bg-white/5 transition-all"
+                  className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full border border-white/10 text-white/50 text-[11px] sm:text-xs hover:text-white/80 hover:border-white/20 hover:bg-white/5 transition-all"
                 >
                   {link.icon}
                   <span>{link.label}</span>
@@ -229,7 +229,7 @@ export default function ContactFooter() {
             </div>
 
             {/* Copyright */}
-            <p className="text-xs text-white/30 tracking-wide">
+            <p className="text-[11px] sm:text-xs text-white/30 tracking-wide text-center md:text-left">
               {t.copyright}
             </p>
           </div>

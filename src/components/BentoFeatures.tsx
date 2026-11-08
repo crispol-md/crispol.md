@@ -72,7 +72,7 @@ export default function BentoFeatures() {
   ];
 
   return (
-    <section id="construct" className="bg-[#F4EFE6] px-3 md:px-5 pb-16 md:pb-24">
+    <section id="construct" className="bg-[#F4EFE6] px-3 sm:px-4 md:px-5 pb-12 sm:pb-16 md:pb-24">
       <div className="max-w-7xl mx-auto">
         {/* Section header */}
         <motion.div
@@ -80,12 +80,12 @@ export default function BentoFeatures() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-60px' }}
           transition={{ duration: 0.6 }}
-          className="mb-8 md:mb-10"
+          className="mb-6 sm:mb-8 md:mb-10"
         >
-          <h2 className="text-2xl md:text-4xl font-bold text-[#161311] tracking-tight mb-2">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#161311] tracking-tight mb-2">
             {t.bentoTitle}
           </h2>
-          <p className="text-sm md:text-base text-[#161311]/50">
+          <p className="text-sm md:text-base text-[#161311]/60">
             {t.bentoSubtitle}
           </p>
         </motion.div>
@@ -99,21 +99,21 @@ export default function BentoFeatures() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-40px' }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className={`rounded-2xl p-6 md:p-8 ${f.bg} ${
+              className={`rounded-2xl p-5 sm:p-6 md:p-8 shadow-sm ${f.bg} ${
                 f.dark ? 'text-[#FAF6F0]' : 'text-[#161311]'
               }`}
             >
               {f.stat && (
-                <div className="mb-4">
+                <div className="mb-3 sm:mb-4">
                   <span
-                    className="text-4xl md:text-5xl font-bold text-[#C59B6D]"
+                    className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#C59B6D]"
                     style={{ fontFamily: 'var(--font-mono), monospace' }}
                   >
                     {f.stat}
                   </span>
                   {f.statLabel && (
                     <span
-                      className="ml-2 text-xs uppercase tracking-wider opacity-50"
+                      className="ml-2 text-xs uppercase tracking-wider opacity-60 font-medium"
                       style={{ fontFamily: 'var(--font-mono), monospace' }}
                     >
                       {f.statLabel}
@@ -121,13 +121,13 @@ export default function BentoFeatures() {
                   )}
                 </div>
               )}
-              {f.icon && <div className="mb-4">{f.icon}</div>}
-              <h3 className="text-lg md:text-xl font-bold tracking-tight mb-2">
+              {f.icon && <div className="mb-3 sm:mb-4">{f.icon}</div>}
+              <h3 className="text-base sm:text-lg md:text-xl font-bold tracking-tight mb-2">
                 {f.title}
               </h3>
               <p
-                className={`text-sm leading-relaxed ${
-                  f.dark ? 'text-white/60' : 'text-[#161311]/60'
+                className={`text-xs sm:text-sm leading-relaxed ${
+                  f.dark ? 'text-white/65' : 'text-[#161311]/65'
                 }`}
               >
                 {f.desc}

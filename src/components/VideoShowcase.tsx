@@ -92,7 +92,7 @@ export default function VideoShowcase() {
   }, [goNext]);
 
   return (
-    <section ref={sectionRef} id="showroom" className="bg-[#F4EFE6] px-3 md:px-5 py-16 md:py-24">
+    <section ref={sectionRef} id="showroom" className="bg-[#F4EFE6] px-3 sm:px-4 md:px-5 py-12 sm:py-16 md:py-24">
       <div className="max-w-7xl mx-auto">
         {/* Section header */}
         <motion.div
@@ -100,12 +100,12 @@ export default function VideoShowcase() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-60px' }}
           transition={{ duration: 0.6 }}
-          className="mb-8 md:mb-10"
+          className="mb-6 sm:mb-8 md:mb-10"
         >
-          <h2 className="text-2xl md:text-4xl font-bold text-[#161311] tracking-tight mb-2">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#161311] tracking-tight mb-2">
             {t.showroomTitle}
           </h2>
-          <p className="text-sm md:text-base text-[#161311]/50">
+          <p className="text-sm md:text-base text-[#161311]/60">
             {t.showroomSubtitle}
           </p>
         </motion.div>
@@ -138,17 +138,17 @@ export default function VideoShowcase() {
               />
 
               {/* Glass overlay badge */}
-              <div className="absolute bottom-3 left-3 right-3 md:bottom-4 md:left-4 md:right-4 z-10">
-                <div className="backdrop-blur-xl bg-[#161311]/65 border border-white/15 rounded-xl p-3 md:p-4 flex items-center justify-between gap-3">
-                  <div className="flex items-center gap-3 min-w-0">
-                    <span className="text-xl md:text-2xl font-mono font-semibold text-[#C59B6D] flex-shrink-0">
+              <div className="absolute bottom-2.5 left-2.5 right-2.5 sm:bottom-4 sm:left-4 sm:right-4 z-10">
+                <div className="backdrop-blur-xl bg-[#161311]/75 border border-white/15 rounded-xl p-2.5 sm:p-3 md:p-4 flex items-center justify-between gap-2 sm:gap-3 shadow-lg">
+                  <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
+                    <span className="text-lg sm:text-xl md:text-2xl font-mono font-semibold text-[#C59B6D] flex-shrink-0">
                       {String(activeIndex + 1).padStart(2, '0')}
                     </span>
                     <div className="min-w-0">
-                      <p className="text-sm md:text-base font-semibold text-[#FAF6F0] truncate">
+                      <p className="text-xs sm:text-sm md:text-base font-semibold text-[#FAF6F0] truncate">
                         {t.videoModels[activeIndex]}
                       </p>
-                      <p className="text-[11px] md:text-xs text-white/50 truncate">
+                      <p className="text-[10px] sm:text-[11px] md:text-xs text-white/50 truncate">
                         {t.videoStyles[activeIndex]}
                       </p>
                     </div>
@@ -158,7 +158,7 @@ export default function VideoShowcase() {
                   <div className="flex items-center gap-1.5 flex-shrink-0">
                     <button
                       onClick={goPrev}
-                      className="w-8 h-8 md:w-9 md:h-9 flex items-center justify-center rounded-lg bg-white/10 hover:bg-white/20 border border-white/10 text-white transition-colors cursor-pointer"
+                      className="w-8 h-8 md:w-9 md:h-9 flex items-center justify-center rounded-lg bg-white/10 hover:bg-white/20 border border-white/10 text-white transition-colors cursor-pointer active:scale-95"
                       aria-label={t.prevModel}
                     >
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -167,7 +167,7 @@ export default function VideoShowcase() {
                     </button>
                     <button
                       onClick={goNext}
-                      className="w-8 h-8 md:w-9 md:h-9 flex items-center justify-center rounded-lg bg-white/10 hover:bg-white/20 border border-white/10 text-white transition-colors cursor-pointer"
+                      className="w-8 h-8 md:w-9 md:h-9 flex items-center justify-center rounded-lg bg-white/10 hover:bg-white/20 border border-white/10 text-white transition-colors cursor-pointer active:scale-95"
                       aria-label={t.nextModel}
                     >
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
